@@ -19,6 +19,7 @@ jobs:
           tar -xvzf xet-linux-x86_64.tar.gz
           sudo mv git-xet /usr/bin/
           which git-xet
+          git xet install
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -32,7 +33,6 @@ jobs:
       - name: Git Xet Install
         run: |
           pushd ..
-          git xet install
           popd
       - name: Set up Python 
         uses: actions/setup-python@v4
