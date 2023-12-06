@@ -1,0 +1,64 @@
+name: xet-enabled-action
+run-name: ${{ github.actor }} is running their workflow with git-xet
+env:
+  PYTHON_VERSION: "3.10"
+
+on:
+  push:
+    tags:
+      - "**"
+  #schedule:
+    #- cron: "40 * * * *" 
+jobs:
+  run-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install git-xet
+        run: |
+          curl -LO https://github.com/xetdata/xet-tools/releases/latest/download/xet-linux-x86_64.tar.gz
+          tar -xvzf xet-linux-x86_64.tar.gz
+          sudo mv git-xet /usr/bin/
+          which git-xet
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: "main"
+      - name: Check checkout
+        run: |
+          ls -la .
+      - name: Pull
+        run: |
+          git xet checkout
+      - name: Git Xet Install
+        run: |
+          pushd ..
+          git xet install
+          popd
+      - name: Set up Python 
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: ETL Pipeline
+        run: |
+          python src/pipeline.py
+      - name: Check Data output
+        run: |
+          head -n 10 data/air_data.csv
+      - name: Workflow
+        run: |
+          mkdir tests
+          head -n 10 nzdata.csv > output.csv
+          head -n 10 nzdata.csv
+          cp nzdata.csv ./tests/aout.csv
+      - name: Commit report
+        run: |
+          git config --global user.name 'Wicked Automation'
+          git config --global user.email 'operations@xethub.com'
+          git add data/.
+          git add tests/.
+          git commit -m "Updating Data"
+          git push 

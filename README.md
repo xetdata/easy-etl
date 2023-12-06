@@ -1,2 +1,2 @@
-# etl-prototype
-Prototyping out an ETL pipeline using GitHub Actions.
+# actions-prototype
+Prototyping git-xet + GitHub actions.
