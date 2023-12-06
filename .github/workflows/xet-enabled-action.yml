@@ -5,7 +5,7 @@ env:
 
 on:
   schedule:
-    - cron: "*/10 * * * *" 
+    - cron: "11 * * * *" 
 jobs:
   run-workflow:
     runs-on: ubuntu-latest
@@ -45,17 +45,10 @@ jobs:
       - name: Check Data output
         run: |
           head -n 10 data/air_data.csv
-      - name: Workflow
-        run: |
-          mkdir -p tests
-          head -n 10 nzdata.csv > output.csv
-          head -n 10 nzdata.csv
-          cp nzdata.csv ./tests/aout.csv
       - name: Commit report
         run: |
           git config --global user.name 'Wicked Automation'
           git config --global user.email 'operations@xethub.com'
           git add data/.
-          git add tests/.
           git commit -m "Updating Data"
           git push 
