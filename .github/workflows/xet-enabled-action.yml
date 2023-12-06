@@ -10,27 +10,7 @@ jobs:
   run-workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Install git-xet
-        run: |
-          curl -LO https://github.com/xetdata/xet-tools/releases/latest/download/xet-linux-x86_64.tar.gz
-          tar -xvzf xet-linux-x86_64.tar.gz
-          sudo mv git-xet /usr/bin/
-          which git-xet
-          git xet install
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: "main"
-      - name: Check checkout
-        run: |
-          ls -la .
-      - name: Pull
-        run: |
-          git xet checkout
-      - name: Git Xet Install
-        run: |
-          pushd ..
-          popd
+      - uses: xetdata/checkout@v0
       - name: Set up Python 
         uses: actions/setup-python@v4
         with:
@@ -42,7 +22,7 @@ jobs:
       - name: ETL Pipeline
         run: |
           python src/pipeline.py
-      - name: Check Data output
+      - name: Peek Data output
         run: |
           head -n 10 data/air_data.csv
       - name: Commit report
