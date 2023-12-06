@@ -4,11 +4,8 @@ env:
   PYTHON_VERSION: "3.10"
 
 on:
-  push:
-    tags:
-      - "**"
-  #schedule:
-    #- cron: "40 * * * *" 
+  schedule:
+    - cron: "*/10 * * * *" 
 jobs:
   run-workflow:
     runs-on: ubuntu-latest
