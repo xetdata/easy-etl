@@ -50,7 +50,7 @@ jobs:
           head -n 10 data/air_data.csv
       - name: Workflow
         run: |
-          mkdir tests
+          mkdir -p tests
           head -n 10 nzdata.csv > output.csv
           head -n 10 nzdata.csv
           cp nzdata.csv ./tests/aout.csv
