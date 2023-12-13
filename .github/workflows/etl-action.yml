@@ -9,11 +9,11 @@ on:
   schedule:
     - cron: "21 * * * *" 
 jobs:
-  run-workflow:
+  run-etl-pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: xetdata/checkout@v0
+        uses: xetdata/checkout@v1
       - name: Set up Python 
         uses: actions/setup-python@v4
         with:
