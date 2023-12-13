@@ -1,13 +1,13 @@
 name: ETL Pipeline
-run-name: Pulling Air data on `$(date +"%Y-%m-%d %T)` 
+run-name: Hourly ETL Pipeline Run
 env:
   PYTHON_VERSION: "3.10"
   AUTOMATION_USERNAME: "ETL Automation"
-  AUTOMATION_EMAIL: "automation@xethub.com"
+  AUTOMATION_EMAIL: "automation@xetdata.com"
 
 on:
   schedule:
-    - cron: "11 * * * *" 
+    - cron: "21 * * * *" 
 jobs:
   run-workflow:
     runs-on: ubuntu-latest
