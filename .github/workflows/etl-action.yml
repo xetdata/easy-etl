@@ -1,7 +1,9 @@
-name: xet-enabled-action
-run-name: ${{ github.actor }} is running their workflow with git-xet
+name: ETL Pipeline
+run-name: Pulling Air data on `$(date +"%Y-%m-%d %T)` 
 env:
   PYTHON_VERSION: "3.10"
+  AUTOMATION_USERNAME: "ETL Automation"
+  AUTOMATION_EMAIL: "automation@xethub.com"
 
 on:
   schedule:
@@ -10,7 +12,8 @@ jobs:
   run-workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: xetdata/checkout@v0
+      - name: Checkout
+        uses: xetdata/checkout@v0
       - name: Set up Python 
         uses: actions/setup-python@v4
         with:
@@ -27,8 +30,8 @@ jobs:
           head -n 10 data/air_data.csv
       - name: Commit report
         run: |
-          git config --global user.name 'Wicked Automation'
-          git config --global user.email 'operations@xethub.com'
+          git config --global user.name $AUTOMATION_USERNAME
+          git config --global user.email $AUTOMATION_EMAIL
           git add data/.
           git commit -m "Updating Data"
           git push 

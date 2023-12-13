@@ -2,14 +2,9 @@ import os
 import requests
 import pandas as pd
 
-def extract(api_key):
+def extract_and_transform():
     """
     Fetch and process air quality measurements from the OpenAQ API.
-
-    Parameters
-    ----------
-    api_key : str
-        API key for authentication with the OpenAQ API.
 
     Returns
     -------
@@ -22,10 +17,9 @@ def extract(api_key):
     
     # Define the query parameters to API
     params = {
-        "location_id": "380422",
+        "location_id": "931", # Downtown Seattle
         "parameter": ["pressure", "temperature", "um003", "um025", "um010", "pm10", "um100", "pm1", "um005", "humidity", "um050", "pm25"],
         "limit": 9000,
-        "api_key": api_key
     }
     
     try:
@@ -60,11 +54,9 @@ def extract(api_key):
 
 
 if __name__ == "__main__":
-    api_key = os.getenv("API_KEY")
+    df = extract_and_transform()
 
-    df = extract(api_key)
-
-
+    # save the data in the data directory
     data_directory = os.path.join(os.getcwd(), "data")
     if not os.path.exists(data_directory):
         os.makedirs(data_directory)
