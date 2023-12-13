@@ -1,4 +1,4 @@
 [upstream]
 origin_type = "github"
 user_name = "xetdata"
-repo_name = "etl-prototype"
+repo_name = "easy-etl"
