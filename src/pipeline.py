@@ -24,7 +24,7 @@ def extract_and_transform():
     
     try:
         # Make the GET request
-        response = requests.get(api_url, params=params, timeout=30)
+        response = requests.get(api_url, params=params, timeout=120)
         response.raise_for_status()  # Raise exception for HTTP errors
         
         if response.status_code == 200:

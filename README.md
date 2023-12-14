@@ -24,18 +24,7 @@ You can [install our client](https://xethub.com/assets/docs/getting-started/inst
 
 ## Your Data Pipeline
 
-What's more exciting to get started with your own data. Luckily, we've structured this repository as a reusable template.
-
-Here's how to get started:
-1. Fork this repo.
-2. Create a new repo in GitHub. Selecting your forked repo as a template. 
-3. Add write permissions to Actions. This enables the pipeline to check the files back into the repo. Click on the repo Settings. Select `Actions` and `General`. Scroll down to `Workflow permissions`, and select `Read and write permissions`. Click `Save`.
-3. Follow the instructions at [XetData integration for GitHub](https://github.com/apps/xetdata) and install the app to your new repo
-4. Edit `src/pipeline.py` and replace the code in `extract()` with your own ETL code.
-5. Make sure to save your requirements with `pip freeze > requirements.txt`
-6. Commit and push your changes.
-
-At the 21st minute of the next hour, your ETL pipeline will be run. Couldn't be easier!
+What's more exciting to get started with your own data. Luckily, we've created a [templated version of this repo here](https://github.com/xetdata/easy-etl-template). Follow the instructions there to setup your own ETL pipeline with just a few steps.
 
 ## Thanks
 This example is an adapted version of [this project](https://github.com/beltran-oscar/ETL-pipeline-ML), so if you like this demo, please go there and show the project some love too.
