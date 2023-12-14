@@ -29,6 +29,7 @@ What's more exciting to get started with your own data. Luckily, we've structure
 Here's how to get started:
 1. Fork this repo.
 2. Create a new repo in GitHub. Selecting your forked repo as a template. 
+3. Add write permissions to Actions. This enables the pipeline to check the files back into the repo. Click on the repo Settings. Select `Actions` and `General`. Scroll down to `Workflow permissions`, and select `Read and write permissions`
 3. Follow the instructions at [XetData integration for GitHub](https://github.com/apps/xetdata) and install the app to your new repo
 4. Edit `src/pipeline.py` and replace the code in `extract()` with your own ETL code.
 5. Make sure to save your requirements with `pip freeze > requirements.txt`
