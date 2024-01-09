@@ -1,30 +1,28 @@
 # Easy Auto-ETL 
-This repository demonstrates an simple ETL (Extract, Transform, Load) Pipeline using GitHub actions powered with XetData. This is a new take on a standard data engineering practice using GitHub.
+This repository demonstrates a simple ETL (Extract, Transform, Load) pipeline on OpenAQ data, fetching and updating Seattle's air quality metrics on an hourly basis.
 
-Using the power of XetData, we are able to implement an automated data processing task using the basic tools available to GitHub users. Since XetData adds efficient and scalable data management directly into your GitHub repo, you are able to check your data files into your repo without fear. This saves you the headache of having to store and sync your data separately from your code.
+[XetData](https://github.com/apps/xetdata) adds large file support to this repo, allowing us to run an automated data processing task using GitHub Actions and store the results back to the repo — no extra databases, orchestrators, or storage needed.
 
 The key benefits of this approach:
-- Save your processed data directly in git, no need to manage a separate account or API keys
-- The entire pipeline is run entirely in GitHub actions
-- Your data is in git, just clone or mount the repo and the data is on hand right with your code
+- Save your processed data directly in Git, no need to manage separate storage accounts or API keys
+- The entire pipeline is run entirely in GitHub Actions
+- Your data and code are tracked side-by-side for guaranteed lock-step development
 
 ## Method 
 
 There are three main pillars in our approach.
 
-- **Trigger** The ETL process is a CRON job triggered every hour in GitHub Actions.
-- **Pipeline** The ETL pipeline code is executed directly within GitHub Actions to pull and process the data.
-- **Data Storage in GitHub** The processed output is saved and committed as a CSV file in the `data` directory of the repo.
+- **Trigger** - The ETL process is a CRON job triggered every hour in GitHub Actions. See `.github/workflows/xet-enabled-action.yml`.
+- **Pipeline** - The ETL pipeline code is executed directly within GitHub Actions to pull and process the data. See `src/pipeline.py`.
+- **Data Storage in GitHub** - The processed output is saved and committed as a CSV file in the `data` directory of the repo.
 
 That's it. 
 
-The updated data is available everytime you clone or pull. Take a look at `.github/workflows/xet-enabled-action.yml` to see the setup of the pipeline. Check out `src/pipeline.py` if you are interested to see how we extract, transform, and load the data.
+Navigate to [the commit history of the processed data](https://github.com/xetdata/easy-etl/commits/main/data/air_data.csv) to see the hourly updates and click on the comments to easily browse to XetData file views. [Install the Git-Xet client](https://xethub.com/assets/docs/getting-started/install) if you want to clone and customize this repository. Data will update on every clone and pull. 
 
-You can [install our client](https://xethub.com/assets/docs/getting-started/install) and clone this repo. You'll be able to explore the cleaned data at `data/air_data.csv`. To view directly in GitHub, you'll need to install [our browser extension](https://xethub.com/assets/docs/github-app#browser-extension) and navigate to `data/air_data.csv` to see a link to view the file.
+## Try it for yourself!
 
-## Your Data Pipeline
-
-What's more exciting to get started with your own data. Luckily, we've created a [templated version of this repo here](https://github.com/xetdata/easy-etl-template). Follow the instructions there to setup your own ETL pipeline with just a few steps.
+What's more exciting than getting started with your own data? Luckily, we've created a [templated version of this repo here](https://github.com/xetdata/easy-etl-template). Follow the instructions there to setup your own ETL pipeline with just a few steps.
 
 ## Thanks
 This example is an adapted version of [this project](https://github.com/beltran-oscar/ETL-pipeline-ML), so if you like this demo, please go there and show the project some love too.
