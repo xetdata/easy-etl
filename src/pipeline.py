@@ -17,7 +17,7 @@ def extract_and_transform():
     
     # Define the query parameters to API
     params = {
-        "location_id": "605974", # Seattle, WA
+        "location_id": "1938", # Seattle, WA
         "parameter": ["pressure", "temperature", "um003", "um025", "um010", "pm10", "um100", "pm1", "um005", "humidity", "um050", "pm25"],
         "limit": 9000,
     }
